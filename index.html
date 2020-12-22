@@ -11,19 +11,19 @@
     <main>
       <div>
         <div id="acceleration">
-          <p>加速度[m/s^2]</p>
+          <p>加速度[cm/s^2]</p>
           <p>x: <span id="acc-x"></span></p>
           <p>y: <span id="acc-y"></span></p>
           <p>z: <span id="acc-z"></span></p>
         </div>
         <div id="accelerationIncludingGravity">
-          <p>重力含めた加速度[m/s^2]</p>
+          <p>重力含めた加速度[cm/s^2]</p>
           <p>x: <span id="acc-gx"></span></p>
           <p>y: <span id="acc-gy"></span></p>
           <p>z: <span id="acc-gz"></span></p>
         </div>
         <div id="rotationRate">
-          <p>角速度[degree/s]</p>
+          <p>角速度[100*degree/s]</p>
           <p>alpha: <span id="rr-a"></span></p>
           <p>beta: <span id="rr-b"></span></p>
           <p>gammma: <span id="rr-g"></span></p>
@@ -89,7 +89,7 @@ function displayData() {
           }
           function print1(id, value){
             var id_obj = document.getElementById(id);
-            id_obj.innerHTML = Math.round(10*value)/10;
+            id_obj.innerHTML = 100*Math.round(10*value)/10;
           }
         });
       })();
