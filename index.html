@@ -36,9 +36,9 @@ var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れ�
  
 // ジャイロセンサの値が変化したら実行される deviceorientation イベント
 window.addEventListener("deviceorientation", (dat) => {
-    alpha = dat.alpha;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
-    beta  = dat.beta;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
-    gamma = dat.gamma;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+    alpha = Math.round(10*dat.alpha)/10;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
+    beta  = Math.round(10*dat.beta)/10;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
+    gamma = Math.round(10*dat.gamma)/10;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 });
  
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
@@ -90,7 +90,7 @@ function displayData() {
           }
           function print1(id, value){
             var id_obj = document.getElementById(id);
-            id_obj.innerHTML = value;
+            id_obj.innerHTML = Math.round(100*value)/100;
           }
         });
       })();
