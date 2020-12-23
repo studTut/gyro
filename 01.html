@@ -20,10 +20,10 @@ window.addEventListener("deviceorientation", (dat) => {
     gamma = Math.round(10*dat.gamma)/10;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 });
 
-window.addEventListener("devicemotion", (rot) => {
-    alphas = rot.rotationrate.alpha;  // z軸（反時計回り）
-    betas  = rot.rotationrate.beta;   // x軸（引き起こす）
-    gammas = rot.rotationrate.gamma;  // y軸（右に傾ける）
+window.addEventListener("devicemotion", function (e){
+    alphas = e.rotationRate.alpha;  // z軸（反時計回り）
+    betas  = e.rotationRate.beta;   // x軸（引き起こす）
+    gammas = e.rotationRate.gamma;  // y軸（右に傾ける）
 });
  
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
@@ -37,9 +37,9 @@ function displayData() {
     txt.innerHTML = "alpha: " + alpha + "<br>"  // x軸の値
                   + "beta:  " + beta  + "<br>"  // y軸の値
                   + "gamma: " + gamma + "<br>"
-                  + "x軸角速度: " + alphas + "<br>"  // x軸の値
-                  + "y軸角速度:  " + betas  + "<br>"  // y軸の値
-                  + "z軸角速度: " + gammas;// z軸の値
+                  + "x軸: " + alphas + "<br>"  // x軸の値
+                  + "y軸:  " + betas  + "<br>"  // y軸の値
+                  + "z軸: " + gammas;// z軸の値
 }
 </script>
 </body>
