@@ -20,10 +20,10 @@ window.addEventListener("deviceorientation", (dat) => {
     gamma = Math.round(10*dat.gamma)/10;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
 });
 
-window.addEventListener("devicemotion", (rotate) => {
-    alphas = rotate.rotationrate.alpha;  // z軸（反時計回り）
-    betas  = rotate.rotationrate.beta;   // x軸（引き起こす）
-    gammas = rotate.rotationrate.gamma;  // y軸（右に傾ける）
+window.addEventListener("devicemotion", (rot) => {
+    alphas = rot.rotationrate.alpha;  // z軸（反時計回り）
+    betas  = rot.rotationrate.beta;   // x軸（引き起こす）
+    gammas = rot.rotationrate.gamma;  // y軸（右に傾ける）
 });
  
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
