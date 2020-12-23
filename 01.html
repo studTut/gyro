@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ジャイロの値を得る</title>
+</head>
+ 
+<body>
+ <div id="txt">ここにデータを表示</div>             <!-- データを表示するdiv要素 -->
+    <main>
+      <div>
+        <div id="acceleration">
+          <p>加速度[cm/s^2]</p>
+          <p>x: <span id="acc-x"></span></p>
+          <p>y: <span id="acc-y"></span></p>
+          <p>z: <span id="acc-z"></span></p>
+        </div>
+        <div id="accelerationIncludingGravity">
+          <p>重力含めた加速度[cm/s^2]</p>
+          <p>x: <span id="acc-gx"></span></p>
+          <p>y: <span id="acc-gy"></span></p>
+          <p>z: <span id="acc-gz"></span></p>
+        </div>
+        <div id="rotationRate">
+          <p>角速度[100*degree/s]</p>
+          <p>alpha: <span id="rr-a"></span></p>
+          <p>beta: <span id="rr-b"></span></p>
+          <p>gammma: <span id="rr-g"></span></p>
+        </div>
+      </div>
+    </main>
+<script>
+var alpha = 0, beta = 0, gamma = 0;             // ジャイロの値を入れる変数を3個用意
+var alphas=0, betas=0, gammas=0;
+
+// ジャイロセンサの値が変化したら実行される deviceorientation イベント
+window.addEventListener("deviceorientation", (dat) => {
+    alpha = Math.round(10*dat.alpha)/10;  // z軸（表裏）まわりの回転の角度（反時計回りがプラス）
+    beta  = Math.round(10*dat.beta)/10;   // x軸（左右）まわりの回転の角度（引き起こすとプラス）
+    gamma = Math.round(10*dat.gamma)/10;  // y軸（上下）まわりの回転の角度（右に傾けるとプラス）
+});
+
+window.addEventListener("devicemotion", (rotate) => {
+    alphas = rotate.rotationrate.alpha;  // z軸（反時計回り）
+    betas  = rotate.rotationrate.beta;   // x軸（引き起こす）
+    gammas = rotate.rotationrate.gamma;  // y軸（右に傾ける）
+});
+ 
+// 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
+var timer = window.setInterval(() => {
+    displayData();      // displayData 関数を実行
+}, 33); // 33msごとに（1秒間に約30回）
+ 
+// データを表示する displayData 関数
+function displayData() {
+    var txt = document.getElementById("txt");   // データを表示するdiv要素の取得
+    txt.innerHTML = "alpha: " + alpha + "<br>"  // x軸の値
+                  + "beta:  " + beta  + "<br>"  // y軸の値
+                  + "gamma: " + gamma + "<br>"
+                  + "x軸: " + alphas + "<br>"  // x軸の値
+                  + "y軸:  " + betas  + "<br>"  // y軸の値
+                  + "z軸: " + gammas;// z軸の値
+}
+</script>
+</body>
+</html>
