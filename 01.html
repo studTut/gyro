@@ -21,9 +21,9 @@ window.addEventListener("deviceorientation", (dat) => {
 });
 
 window.addEventListener("devicemotion", function (e){
-    alphas = e.rotationRate.alpha;  // z軸（反時計回り）
-    betas  = e.rotationRate.beta;   // x軸（引き起こす）
-    gammas = e.rotationRate.gamma;  // y軸（右に傾ける）
+    alphas = Math.round(10*e.rotationRate.alpha)/10;  // z軸（反時計回り）
+    betas  = Math.round(10*e.rotationRate.beta)/10;   // x軸（引き起こす）
+    gammas = Math.round(10*e.rotationRate.gamma)/10;  // y軸（右に傾ける）
 });
  
 // 指定時間ごとに繰り返し実行される setInterval(実行する内容, 間隔[ms]) タイマーを設定
